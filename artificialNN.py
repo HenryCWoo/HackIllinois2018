@@ -2,6 +2,7 @@ import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense
 import ast
+from keras.models import load_model
 
 alcohol = ['boza', 'tsikoudia', 'williamine', 'orujo', 'lager', 'tequila', 'aila', 'piscos', 'kasikisi', 'tongba', 'urgwagwa', 'armagnac', 'feni', 'tescovin ', 'cocoroco', 'ale', 'tonto', ' uic ', 'dunjeva a', 't rk lyp linka', 'pomace', 'palm', 'damassine', 'korn', 'molasses', 'whiskey', 'sorghum', 'horilka', 'bilibili', 'cacha a', 'plantains', 'toddy', 'umeshu', 'bock', 'arak', 'tiswin', 'burukutu', 'sake', 'rakia', 'apfelwein', 'brandy', 'okolehao', 'wheat', 'tepache', 'pilsener', 'aguardiente', 'vodka', 'soju', ' uic ', 'perry', 'marsala', 'cassava', 'tembo', 'edit', 'guaro', 'tesguino', 'huangjiu', 'schnapps', 'pisco', 'baijiu', 'cognac', 'tiquira', 'thwon', 'applejack', 'makgeolli', 'merisa', 'stout', 'rak ', 'barley', 'obstwasser', 'tequilas', 'zivania', 'pito', 'rye', 'tuak', 'cashew', 'buckwheat', 'trester', 'sonti', 'vinjak', 'lozova a', 'borovi ka', 'akvavit', 'pinga', 'ouzo', 'absinthe', 'vodkas', 'rum', 'gin', 'parakari', 'wine', 'shochu', 'sahti', ' ljivovica', 'tsipouro', 'kirsch', 'madeira', 'millet', 'quinces', 'jabukova a', 'mamajuana', 'mbege', 'palinka', 'marc', 'clairin', 'brem', 'kvass', 'beer', 'cider', 'ogogoro', 'moonshine', 'witbier', 'kajsijeva a', 'maotai', 'choujiu', 'grappa', 'pastis', 'cauim', 'chungju', 'poir ', 'awamori', 'beers', 'blaand', 'majmunova a', 'highball', 'pulque', 'wines', 'ethanol', 'metaxa', 'mezcal', 'viljamovka', 'cocktails', 'kumis', 'singani', 'fermenting', 'kilju', 'gouqi', 'port', 'spirits', 'himbeergeist', 'nihamanchi', 'kasiri', 'whisky', 'porter', 'tej', 'vinsanto', 'mead', 'jenever', 'schwarzbier', 'vermouth', 'arrack', 'raki', 'basi', 'slivovitz', 'kefir', 'sangria', 'chicha', 'liqueurs', 'barleywine', 'calvados', 'sambuca', 'champagne', 'raicilla', 'poit n', 'sherry', 'baga o', 'p linka', 'liqueur', 'liquor', 'triple sec', 'bitters', 'rumchata', 'amaretto', 'irish cream', 'schnapps', 'grain alcohol']
 garnish = ['olive', 'cucumber', 'peppermint', 'choco', 'chocolate', 'tobasco', 'syrup', 'wedge', 'whipped cream', 'caramel', 'vanilla extract', 'wedges', 'nutmeg', 'pepper', 'celery', 'salt', 'cinnamon', 'vanilla', 'ice', 'sugar', 'sugarcane']
@@ -43,3 +44,5 @@ model.summary()
 
 model.compile(loss='mean_squared_error', optimizer='adam', metrics=['accuracy'])
 model.fit(a, np.array(Y), epochs=100, batch_size=50,  verbose=1, validation_split=0.3)
+
+model.save('motherModel.h5')

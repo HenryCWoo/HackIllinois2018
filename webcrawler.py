@@ -9,6 +9,9 @@ exec(open('sorter.py').read())
 exec(open('sorter2.py').read())
 
 def unique(convert):    
+    return re.findall('/([0-9^"]*)/', convert)[1]
+
+def uniqueSec(convert):    
     return re.findall('/([0-9^"]*)/', convert)[0]
 
 max_index = 1000000
@@ -96,8 +99,8 @@ for mult in range(10, 110):
 
     for recipe in match.find_all('div'):
         for i in recipe.find_all('a'):
-            if(bool(re.search('/([0-9^"].*)/',i['href'])) and (visited[int(unique(i['href']))] == 0)):
+            if(bool(re.search('/([0-9^"].*)/',i['href'])) and (visited[int(uniqueSec(i['href']))] == 0)):
                 print('http://www.1001cocktails.com' + i['href'])
                 time.sleep(2)
                 f.write(str(getFeatVect2('http://www.1001cocktails.com' + i['href'])) + '\n')
-                visited[int(unique(i['href']))] = 1
+                visited[int(uniqueSec(i['href']))] = 1
