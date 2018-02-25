@@ -9,7 +9,7 @@ exec(open('sorter.py').read())
 exec(open('sorter2.py').read())
 
 def unique(convert):    
-    return re.findall('/([0-9^"]*)/', convert)[1]
+    return re.findall('/([0-9^"]*)/', convert)[0]
 
 max_index = 1000000
 
