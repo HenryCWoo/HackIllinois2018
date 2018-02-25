@@ -4,7 +4,7 @@ import re
 import csv
 import numpy as np
 
-def getFeatVect(url):
+def getFeatVect2(url):
 
 	def string_found(string1, string2):
 	   if re.search(r"\b" + re.escape(string1) + r"\b", string2):
@@ -45,16 +45,15 @@ def getFeatVect(url):
 	# parse the html using beautiful soup and store in variable `soup`
 	soup = BeautifulSoup(page, 'html.parser')
 	# get the index price
-	name = soup.find('h1', attrs={'class':'recipe-summary__h1'}).text
+	name = soup.find('h1').text
 	# print(name)
 	# Take out the <div> of name and get its value
-	ingred = soup.find_all('span', class_='recipe-ingred_txt added')
 	ingredients = []
-	for i in ingred:
-		ingredients.append(i.get_text())
-	# print(ingredients)
+	for ingred in soup.find_all('td', class_='normal2'):
+		for i in ingred.find_all('u'):
+			ingredients.append(i.text) 
 
-	rating = soup.find("div", {'class':"rating-stars"})['data-ratingstars']
+	rating = float(soup.find_all("span", {'class':"important2gras"})[1].text)/4
 	# print(rating)
 
 	nonAlcs = []
